@@ -1,18 +1,17 @@
-# Datepicker on angular 2 in forms
+# using Datepicker on angular 2 in template driven forms
 
-I have read in several forum people having problem integrating in Forms, Datepicker Angular2. So i decided to post an example of a solution that could be use.
+I have read in several forum people having problem integrating in Forms, Datepicker Angular2. So i decided to post an example of a solution that could be used.
 
-
-
+At the end, you will find some link to understand better how datePicker and forms can be configured.
 
 ## Prerequise
 
 I'm using for this exercise:
 - Angular 2.4.5
 - Express server
-- ng2-bootstrap
+- ng2-bootstrap for the datePicker
 
-So the installation of the package is required :
+So the installation of packages is required :
 > npm install
 
 To launch the server
@@ -24,41 +23,47 @@ To launch the angular
 Access to the website
 http://locahost:3000
 
-## The template driven
+## The template driven form
 ### How does it work?
-The exercise is to fill a project description form
+The exercise, here, is to create a project description form using datePicker of course
 
 #### Interface
-the interface structure the project form (project.model.ts)
+The interface structures the project form (project.model.ts)
 
-so a formatted variable can be re-used when initializing the component (OnInit)
+... so a formatted variable can be re-used throughout the program and specially during initialisation of the component (OnInit)
 
-#### the form
-The binding is typical for most of the input, or select items
-Except for the datePicker that doesn't accept the standard form binding
+#### Form
+The binding is typical for most of the input, or select items.
 
-#### the datePicker
-The variable and datePicker thanks to [(ngModel)]= "project.startDate"
-the trick is to create an HIDDEN input component (type:HIDDEN). While datePicker is not bind to the form, this hidden composant is. The 2-way binding do the magic and as soon as a date is click on a calendar, it appears inside in the form with the same value
+However datePicker that doesn't accept the standard form binding.
 
-For the purpose of the exercise, I set as "required" this hidden component: the form is waiting for a date to be picked 
+#### datePicker
+To allow the date Picker to work properly, I use an option to avoid any error. The datePicker is now "stand alone". however I'm interested to use information, two fold : 1. setting dates, 2. getting dates. So i will setup a 2way-binding [(ngModel)] = "project.startDate" or "project.endDate"
 
-Also you can configure datePicker to Achieve some more rules:
-- the End Date should finish after the start Date
-by setting a rule "minDate" parameters to the second calendar (endDate) then you disallow the to pickup earlier date than ... the startDate for example.
+The trick is to create an HIDDEN input component (type:HIDDEN) for each datePicker element. While datePicker is not bind to the form, this hidden composant is. The 2-way binding do the magic and as soon as a date is clicked on a calendar, it appears inside in the form with the same value
 
+For the purpose of the exercise, I set as "required" this hidden component: the form is waiting for a date to be picked in order to be validated
 
-### Summary
+Also you can configure datePicker to achieve some more rules:
+- the End Date should be after the start Date
+
+By setting a rule "minDate" parameters to the second datePicker (endDate) then the user will not be able to pickup an earlier date than ... the startDate for example. [minDate] = "project.startDate"
+
+## Summary
 This small code allows you to create a template driven Form using 2 datePickers some basic rules
+Hope this helps!
 
+## References:
+_About datePicker_
 
-References:
-About datePicker
 http://www.dotnetcurry.com/angular/1345/angular2-datepicker-bootstrap-tutorial
 
-About template driven form and validators
+_About template driven form and validators_
+
 https://scotch.io/tutorials/using-angular-2s-template-driven-forms
+
 https://scotch.io/tutorials/how-to-implement-a-custom-validator-directive-confirm-password-in-angular-2
 
-About model drivent form
+_About model driven form_
+
 https://toddmotto.com/angular-2-forms-reactive#simplifying-with-formbuilder
