@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "moduleResolution": "node",
+    "noImplicitAny": false,
+    "sourceMap": true,
+    "mapRoot": "",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": ["es2015", "dom"],
+    "types" : ["node"],
+    "allowSyntheticDefaultImports": true
+    
+  },
+
+
+  "exclude": [
+    "node_modules",
+    "public/js"
+  ]
+}

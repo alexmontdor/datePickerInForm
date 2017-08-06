@@ -1,0 +1,44 @@
+<h1>A form for Project (Exemple)</h1>
+
+Need Rules like ( StartDate > end Date)
+
+<div class="col-md-4 col-md-offset-2">
+    <form (ngSubmit)="onSubmit(f.value)" #f="ngForm">
+        <div class="form-group">
+            <label for="name">(Required) Name</label>
+            <input type="text" name="name" class="form-control" [(ngModel)]="project.name" #name="ngModel" required>
+
+            <label for="description">(Required) Description</label>
+            <input type="text" name="description" class="form-control" [(ngModel)]="project.description" #description="ngModel" required>
+
+            <span>(Required) Starts on : {{ project.startDate | date: 'dd-MM-yyyy'}}</span>
+            <input type="hidden" name="startDate" class="form-control" [(ngModel)]="project.startDate" #startDate="ngModel" required>
+            <datepicker 
+                [(ngModel)]="project.startDate" 
+                [ngModelOptions]="{standalone: true}">
+            </datepicker>
+
+            <span>(Required) Ends on: {{ project.endDate | date: 'dd-MM-yyyy'}}</span>
+            <input type="hidden" name="endDate" class="form-control" [(ngModel)]="project.endDate" #endDate="ngModel" required>
+            <datepicker 
+                [(ngModel)]="project.endDate" 
+                [ngModelOptions]="{standalone: true}"
+                [minDate]="project.startDate">
+            </datepicker>
+
+            <select name="type" [(ngModel)]="project.type" *ngIf="false" #WFTemplateId="ngModel" required>
+                    <option *ngFor="let workflowTemplate of workflowTemplates " [ngValue]="workflowTemplate._id">{{ workflowTemplate.name }} {{ workflowTemplate.steps.lentgh }} steps</option>
+            </select>
+
+        </div>
+        <button type="button" class="btn btn-danger" (click)="onClear(f)">Clear</button>
+
+        <button class="btn btn-primary" type="submit" *ngIf="f.valid">Submit</button>
+    </form>
+</div>
+<div class="">
+    <div>What is happening in your form:</div>
+    <pre>Is it valid? <br>{{f.valid | json}}</pre>
+    <pre>Is it submitted? <br>{{f.submitted | json}}</pre>
+    <pre>what is its value? <br>{{f.value | json}}</pre>
+</div>
