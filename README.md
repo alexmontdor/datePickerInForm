@@ -2,7 +2,7 @@
 
 I have read in several forum people having problem integrating in Forms, Datepicker Angular2. So i decided to post an example of a solution that could be used.
 
-At the end, you will find some link to understand better how datePicker and forms can be configured.
+At the end, you will find some links to understand better how datePicker and forms can be configured.
 
 ## Prerequise
 
